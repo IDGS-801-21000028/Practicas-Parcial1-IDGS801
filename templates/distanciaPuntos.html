@@ -1,0 +1,49 @@
+{% extends "layout2.html" %}
+
+{% block container %}
+
+  {% import '_macros.html'  as macros %}
+
+  <div class="container" style="padding-left: 20px;">
+    <h1 style="text-transform: uppercase; display:flex; align-items: center;">Distancia entre dos puntos</h1>
+
+    <form action="" method="POST" novalidate style="padding-left: 20px;">
+  
+      <div class="row d-flex">
+        <div class="control-group col-xs-6">
+          <div class="form-group form-group col-xs-6 floating-label-form-gruop controls">
+            {{macros.campos(form.p1_x, class="form-control")}}
+          </div>
+        </div>    
+        <div class="col-xs-6 control-group">
+          <div class="form-group form-group col-xs-6 floating-label-form-gruop controls">
+            {{macros.campos(form.p1_y, class="form-control")}}
+          </div>
+        </div>
+      </div>
+  
+      <div class="row d-flex">
+        <div class="row control-group">
+          <div class="form-group form-group col-xs-12 floating-label-form-gruop controls">
+            {{macros.campos(form.p2_x, class="form-control")}}
+          </div>
+        </div>
+    
+        <div class="row control-group">
+          <div class="form-group form-group col-xs-12 floating-label-form-gruop controls">
+            {{macros.campos(form.p2_y, class="form-control")}}
+          </div>
+        </div>  
+      </div>    
+  
+      <button type="submit" class="btn btn-success">CALCULAR</button>
+    </form>
+  </div>
+
+  <div class="container" style="float: left; padding-left: 20px;">
+    <h3>Resultado</h3>
+    <p>La distancia entre los puntos P1({{data.p1_x}},{{data.p1_y}}) y P2({{data.p2_x}},{{data.p2_y}}) es:</p>
+    <h4>Distancia: {{data.resu}}</h4>
+  </div>
+  
+{% endblock %}
