@@ -1,47 +1,47 @@
-{% extends "layout2.html" %}
+{% extends "layout.html" %}
 
 {% block container %}
-  <h1>Calcular</h1>
+<h1>Calcular</h1>
 
-  <form action="/resultado" method="POST">
-    <div>
-      <label for="num1">Número 1:</label>
-      <input type="text" name="n1" id="num1">
+<form action="/resultado" method="POST">
+  <div class="g-3">
+    <div class="col-md-6">
+      <label for="num1" class="form-label">Número 1:</label>
+      <input type="text" name="n1" id="num1" class="form-control">
     </div>
-
-    <div>
-      <label for="num2">Número 2:</label>
-      <input type="text" name="n2" id="num2">
+    <div class="col-md-6">
+      <label for="num2" class="form-label">Número 2:</label>
+      <input type="text" name="n2" id="num2" class="form-control">
     </div>
+  </div>
 
-    <div class="container">      
-      <label class="form-label">Operación:</label>
-      <div class="btn-group">
-        <div>
-          <input type="radio" name="op" id="suma" value="suma" class="btn-check">
-          <label class="btn btn-primary" for="suma">Suma</label>
-        </div>
+  <div class="container-fluid my-1">
+    <label class="form-label">Operación:</label>
+    <div class="btn-group p-1" role="group">
+      <div class="btn-group" role="group">
+        <input type="radio" name="op" id="suma" value="suma" class="btn-check">
+        <label class="btn btn-primary" for="suma">Suma</label>
+      </div>
 
-        <div>
-          <input type="radio" name="op" id="resta" value="resta" class="btn-check">
-          <label class="btn btn-primary" for="resta">Resta</label>
-        </div>
+      <div class="btn-group" role="group">
+        <input type="radio" name="op" id="resta" value="resta" class="btn-check">
+        <label class="btn btn-primary" for="resta">Resta</label>
+      </div>
 
-        <div>
-          <input type="radio" name="op" id="multi" value="multiplicacion" class="btn-check">
-          <label class="btn btn-primary" for="multi">Multiplicación</label>
-        </div>
+      <div class="btn-group" role="group">
+        <input type="radio" name="op" id="multi" value="multi" class="btn-check">
+        <label class="btn btn-primary" for="multi">Multiplicación</label>
+      </div>
 
-        <div>
-          <input type="radio" name="op" id="div" value="division" class="btn-check">
-          <label class="btn btn-primary" for="div">División</label>
-        </div>
+      <div class="btn-group" role="group">
+        <input type="radio" name="op" id="divi" value="divi" class="btn-check">
+        <label class="btn btn-primary" for="divi">División</label>
       </div>
     </div>
+  </div>
 
-    <button type="submit" class="btn btn-success">CALCULAR</button>
-  </form>
 
-  
+  <button type="submit" class="btn btn-success mt-1 ">CALCULAR</button>
+</form>
 
 {% endblock %}

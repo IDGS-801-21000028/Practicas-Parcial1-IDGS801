@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block container %}
+
+{% import '_macros.html' as macros %}
+
+<div class="container-fluid">
+  <h1 style="text-transform: uppercase; display:flex; align-items: center;">Calculo de Resistencia</h1>
+
+  <form action="" method="POST" novalidate style="padding-left: 20px;">
+    <div class="row d-flex">
+      <div class="col-md-4 mt-1">
+        <div class="form-group form-group col-md-12 floating-label-form-gruop controls">
+          <h4>Primera Banda</h4>
+          {{macros.campos(form.cl1, class="form-control")}}
+        </div>
+      </div>
+      <div class="col-md-4 mt-1">
+        <div class="form-group form-group col-md-12 floating-label-form-gruop controls">
+          <h4>Segunda Banda</h4>
+          {{macros.campos(form.cl2, class="form-control")}}
+        </div>
+      </div>
+      <div class="col-md-4 mt-1 ">
+        <div class="form-group form-group col-md-12 floating-label-form-gruop controls">
+          <h4>Tercera Banda</h4>
+          {{macros.campos(form.cl3, class="form-control")}}
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="d-flex">
+          {{macros.campos(form.tlr)}}
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-outline-success mt-2 col-md-12">Registrar</button>
+  </form>
+</div>
+
+<div class="container-fluid mt-4">
+  <h3>Resultado</h3>
+  <table class="table table-bordered table-dark">
+    <thead>
+      <tr>
+        <th>Color 1</th>
+        <th>Color 2</th>
+        <th>Color 3</th>
+        <th>Tolerancia</th>
+        <th>Valor</th>
+        <th>Valor Máximo</th>
+        <th>Valor Mínimo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="c1" data-color="{{data.c1}}">{{data.c1}}</td>
+        <td id="c2" data-color="{{data.c2}}">{{data.c2}}</td>
+        <td id="c3" data-color="{{data.c3}}">{{data.c3}}</td>
+        <td id="tlrR" data-color="{{data.tlr}}">{{data.tlr}}%</td>
+        <td>{{data.valor}} Ω</td>
+        <td>{{data.vMax}} Ω</td>
+        <td>{{data.vMin}} Ω</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+{% endblock %}
