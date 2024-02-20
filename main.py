@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request
 
-from forms import PuntosForm
-from forms_Resistencia import Resistencia
+from forms import *
 from math import sqrt
+from io import open
 
 app = Flask(__name__)
 
@@ -33,7 +33,6 @@ def resultado():
       return "<h2 style='font-family: sans-serif'>La división de {} / {} = {} </h2>".format(num1, num2, str(int(num1) / int(num2)))
     elif opera == "multi":
       return "<h2 style='font-family: sans-serif'>La multiplicación de {} * {} = {} </h2>".format(num1, num2, str(int(num1) * int(num2)))
-
 
 @app.route("/puntos", methods=["GET","POST"])
 def puntos():
@@ -89,6 +88,41 @@ def resistencia():
     else:
       res['tlr'] = 'Plata 10'         
   return render_template("resistencias.html", form=datos, data=res)
+
+@app.route("/palabras", methods=["GET","POST"])
+def palabras():
+  rqst = request.form
+  plbr = Palabras(rqst) 
+  res = {'palabra':'','ukn':''}   
+      
+  if request.method == "POST":      
+    if 'Registrar' in rqst.get('btn'):    
+      plbr.op.validators = []
+      plbr.bs.validators = []
+      if plbr.validate():
+        arch = open("palabras.txt",'a')
+        arch.write(f"{plbr.pl1.data.upper()},{plbr.pl2.data.upper()}\n")
+        arch.close()
+        plbr.pl1.data = ''
+        plbr.pl2.data = ''
+    elif 'Buscar' in rqst.get('btn'):   
+      plbr.pl1.validators = []
+      plbr.pl2.validators = []
+      if plbr.validate():         
+        arch = open("palabras.txt",'r')      
+        for ln in arch.readlines():
+          palabras = ln.strip().split(",")                      
+          if plbr.op.data == "Inglés" and palabras[0] == plbr.bs.data.upper():
+            res['palabra'] = palabras[1]
+            res['ukn'] = ""
+          elif plbr.op.data == "Español" and palabras[1] == plbr.bs.data.upper():
+            res['palabra'] = palabras[0]     
+            res['ukn'] = ""
+          else:
+            res['ukn'] = "Palabra no encontrada"
+        arch.close()                        
+  
+  return render_template("archivos.html", form=plbr, res=res)
 
 
 if __name__ == "__main__":

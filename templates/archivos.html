@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block container %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+
+<div class="container-fluid">
+
+  {% import '_macros.html' as macros %}
+  <div class="container">
+    <h1>Palabras</h1>
+    <form id="form1" method="POST" novalidate action="/palabras">
+      <div class="row d-flex">
+        <div class="col-md-6">
+          <div class="form-group form-group col-xs-6 floating-label-form-gruop controls">
+            {{macros.campos(form.pl1, class="form-control")}}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group form-group col-xs-6 floating-label-form-gruop controls">
+            {{macros.campos(form.pl2, class="form-control")}}
+          </div>
+        </div>
+      </div>
+      <input type="submit" name="btn" value="Registrar" class="btn btn-outline-success mt-2 col-md-12">
+    </form>
+  </div>
+
+  <div class="container">
+    <h1>LEER</h1>
+    <form id="form2" method="POST" novalidate action="/palabras">
+      <div class="row d-flex">
+        <div class="col-md-6">
+          <div class="form-group form-group col-xs-6 floating-label-form-gruop controls">
+            {{macros.campos(form.op)}}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group form-group col-xs-6 floating-label-form-gruop controls">
+            {{macros.campos(form.bs, class="form-control")}}
+          </div>
+        </div>
+      </div>
+      <input type="submit" name="btn" id="btnBuscar" value="Buscar" class="btn btn-outline-primary mt-2 col-md-12">
+    </form>
+
+    {% if res.palabra != '' or res.k !='' %}
+    <div class="container-fluid mt-4">
+      <h1>Resultado</h1>
+      <div class="d-flex gap-5">
+        {% if res.palabra != ''%}
+        <h3>{{res.palabra}}</h3>            
+        {% else %}
+        <h2 style="color:red">{{res.ukn}}</h2>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  
+
+</div>
+
+{% endblock %}
