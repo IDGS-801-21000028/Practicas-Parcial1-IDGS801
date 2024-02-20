@@ -101,21 +101,22 @@ def palabras():
       plbr.bs.validators = []
       if plbr.validate():
         arch = open("palabras.txt",'a')
-        arch.write(f"{plbr.pl1.data.upper()},{plbr.pl2.data.upper()}\n")
+        arch.write(f"{plbr.pl1.data.upper().strip()},{plbr.pl2.data.upper().strip()}\n")
         arch.close()
         plbr.pl1.data = ''
         plbr.pl2.data = ''
     elif 'Buscar' in rqst.get('btn'):   
       plbr.pl1.validators = []
       plbr.pl2.validators = []
-      if plbr.validate():         
+      if plbr.validate():    
         arch = open("palabras.txt",'r')      
         for ln in arch.readlines():
-          palabras = ln.strip().split(",")                      
-          if plbr.op.data == "Inglés" and palabras[0] == plbr.bs.data.upper():
+          palabras = ln.strip().split(",")
+          plb_Buscar = plbr.bs.data.upper().strip()                
+          if plbr.op.data == "Inglés" and palabras[0] == plb_Buscar:
             res['palabra'] = palabras[1]
             res['ukn'] = ""
-          elif plbr.op.data == "Español" and palabras[1] == plbr.bs.data.upper():
+          elif plbr.op.data == "Español" and palabras[1] == plb_Buscar:
             res['palabra'] = palabras[0]     
             res['ukn'] = ""
           else:
