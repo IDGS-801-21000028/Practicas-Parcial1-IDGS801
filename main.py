@@ -112,11 +112,12 @@ def palabras():
         arch = open("palabras.txt",'r')      
         for ln in arch.readlines():
           palabras = ln.strip().split(",")
-          plb_Buscar = plbr.bs.data.upper().strip()                
-          if plbr.op.data == "Inglés" and palabras[0] == plb_Buscar:
+          plb_Buscar = plbr.bs.data.upper().strip()  
+          opcion_Buscar = plbr.op.data
+          if opcion_Buscar == "Inglés" and palabras[0] == plb_Buscar:
             res['palabra'] = palabras[1]
             res['ukn'] = ""
-          elif plbr.op.data == "Español" and palabras[1] == plb_Buscar:
+          elif opcion_Buscar == "Español" and palabras[1] == plb_Buscar:
             res['palabra'] = palabras[0]     
             res['ukn'] = ""
           else:
